@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <h1 className="container-md border">RRHH Cloud</h1>
+      <h1 className="container-md border">Bioseguridad y Control Sanitario</h1>
       <FormularioDinamico/>
     </>
   )
