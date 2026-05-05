@@ -1,45 +1,36 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "RRHH",
+    "title": "BYCS",
     "version": "1.0"
   },
   "paths": {
-    "/api/Contabilidad/contabilidad/santa-cruz/pagos": {
-      "post": {
+    "/api/Correos/GET": {
+      "get": {
         "tags": [
-          "Contabilidad"
+          "Correos"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PagoRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PagoRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/PagoRequest"
-              }
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Correos/GET/{correo}": {
+      "get": {
+        "tags": [
+          "Correos"
+        ],
+        "parameters": [
+          {
+            "name": "correo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Departamentos/GET": {
-      "get": {
-        "tags": [
-          "Departamentos"
         ],
         "responses": {
           "200": {
@@ -48,10 +39,312 @@
         }
       }
     },
-    "/api/Departamentos/GET/{codigo}": {
+    "/api/Correos/GET/Borrados": {
       "get": {
         "tags": [
-          "Departamentos"
+          "Correos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Correos/POST/{correo}": {
+      "post": {
+        "tags": [
+          "Correos"
+        ],
+        "parameters": [
+          {
+            "name": "correo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Correos/PUT/{correo}/{correo_nuevo}": {
+      "put": {
+        "tags": [
+          "Correos"
+        ],
+        "parameters": [
+          {
+            "name": "correo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "correo_nuevo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Correos/DEL/{correo}": {
+      "delete": {
+        "tags": [
+          "Correos"
+        ],
+        "parameters": [
+          {
+            "name": "correo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Correos/HAB/{correo}": {
+      "put": {
+        "tags": [
+          "Correos"
+        ],
+        "parameters": [
+          {
+            "name": "correo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Informes/GET": {
+      "get": {
+        "tags": [
+          "Informes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Informes/GET/{codigo_informe}": {
+      "get": {
+        "tags": [
+          "Informes"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_informe",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Informes/GET/Borrados": {
+      "get": {
+        "tags": [
+          "Informes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Informes/POST/{codigo_informe}/{titulo}/{descripcion}/{url}": {
+      "post": {
+        "tags": [
+          "Informes"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_informe",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "titulo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "url",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Informes/PUT/{codigo_informe}/{titulo}/{descripcion}/{url}": {
+      "put": {
+        "tags": [
+          "Informes"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_informe",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "titulo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "url",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Informes/DEL/{codigo_informe}": {
+      "delete": {
+        "tags": [
+          "Informes"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_informe",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Informes/HAB/{codigo_informe}": {
+      "put": {
+        "tags": [
+          "Informes"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_informe",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Inventarios/GET": {
+      "get": {
+        "tags": [
+          "Inventarios"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Inventarios/GET/{codigo}": {
+      "get": {
+        "tags": [
+          "Inventarios"
         ],
         "parameters": [
           {
@@ -70,10 +363,10 @@
         }
       }
     },
-    "/api/Departamentos/GET/Borrados": {
+    "/api/Inventarios/GET/Borrados": {
       "get": {
         "tags": [
-          "Departamentos"
+          "Inventarios"
         ],
         "responses": {
           "200": {
@@ -82,10 +375,176 @@
         }
       }
     },
-    "/api/Departamentos/POST{codigo}/{nombre}": {
+    "/api/Inventarios/POST/{codigo}/{titulo}/{descripcion}": {
       "post": {
         "tags": [
-          "Departamentos"
+          "Inventarios"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "titulo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Inventarios/PUT/{codigo}/{titulo}/{descripcion}": {
+      "put": {
+        "tags": [
+          "Inventarios"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "titulo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Inventarios/DEL/{codigo}": {
+      "delete": {
+        "tags": [
+          "Inventarios"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Inventarios/HAB/{codigo}": {
+      "put": {
+        "tags": [
+          "Inventarios"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Items/GET": {
+      "get": {
+        "tags": [
+          "Items"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Items/GET/{codigo}": {
+      "get": {
+        "tags": [
+          "Items"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Items/GET/Borrados": {
+      "get": {
+        "tags": [
+          "Items"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Items/POST/{codigo}/{nombre}/{descripcion}": {
+      "post": {
+        "tags": [
+          "Items"
         ],
         "parameters": [
           {
@@ -103,6 +562,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "descripcion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -112,10 +579,10 @@
         }
       }
     },
-    "/api/Departamentos/PUT/{codigo}/{nombreNuevo}/{codigoNuevo}": {
+    "/api/Items/PUT/{codigo}/{nombre}/{descripcion}": {
       "put": {
         "tags": [
-          "Departamentos"
+          "Items"
         ],
         "parameters": [
           {
@@ -127,7 +594,7 @@
             }
           },
           {
-            "name": "nombreNuevo",
+            "name": "nombre",
             "in": "path",
             "required": true,
             "schema": {
@@ -135,7 +602,7 @@
             }
           },
           {
-            "name": "codigoNuevo",
+            "name": "descripcion",
             "in": "path",
             "required": true,
             "schema": {
@@ -150,10 +617,10 @@
         }
       }
     },
-    "/api/Departamentos/DEL/{codigo}": {
+    "/api/Items/DEL/{codigo}": {
       "delete": {
         "tags": [
-          "Departamentos"
+          "Items"
         ],
         "parameters": [
           {
@@ -172,10 +639,10 @@
         }
       }
     },
-    "/api/Departamentos/HAB/{codigo}": {
+    "/api/Items/HAB/{codigo}": {
       "put": {
         "tags": [
-          "Departamentos"
+          "Items"
         ],
         "parameters": [
           {
@@ -194,10 +661,10 @@
         }
       }
     },
-    "/api/EmpleadoCurriculums/GET": {
+    "/api/ItemStocks": {
       "get": {
         "tags": [
-          "EmpleadoCurriculums"
+          "ItemStocks"
         ],
         "responses": {
           "200": {
@@ -206,14 +673,22 @@
         }
       }
     },
-    "/api/EmpleadoCurriculums/GET/{Cod_Emp}": {
+    "/api/ItemStocks/GET/{codigo_item}/{codigo_inventario}": {
       "get": {
         "tags": [
-          "EmpleadoCurriculums"
+          "ItemStocks"
         ],
         "parameters": [
           {
-            "name": "Cod_Emp",
+            "name": "codigo_item",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigo_inventario",
             "in": "path",
             "required": true,
             "schema": {
@@ -228,10 +703,10 @@
         }
       }
     },
-    "/api/EmpleadoCurriculums/GET/Borrados": {
+    "/api/ItemStocks/GET/Borrados": {
       "get": {
         "tags": [
-          "EmpleadoCurriculums"
+          "ItemStocks"
         ],
         "responses": {
           "200": {
@@ -240,14 +715,38 @@
         }
       }
     },
-    "/api/EmpleadoCurriculums/POST/{cod_emp}/{perfil}/{fecharecepcion}": {
+    "/api/ItemStocks/GET/Alerta": {
+      "get": {
+        "tags": [
+          "ItemStocks"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ItemStocks/GET/AlertaVacios": {
+      "get": {
+        "tags": [
+          "ItemStocks"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ItemStocks/POST/{codigo_item}/{codigo_inventario}/{cantidad}": {
       "post": {
         "tags": [
-          "EmpleadoCurriculums"
+          "ItemStocks"
         ],
         "parameters": [
           {
-            "name": "cod_emp",
+            "name": "codigo_item",
             "in": "path",
             "required": true,
             "schema": {
@@ -255,7 +754,7 @@
             }
           },
           {
-            "name": "perfil",
+            "name": "codigo_inventario",
             "in": "path",
             "required": true,
             "schema": {
@@ -263,12 +762,12 @@
             }
           },
           {
-            "name": "fecharecepcion",
+            "name": "cantidad",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "date-time"
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -279,14 +778,14 @@
         }
       }
     },
-    "/api/EmpleadoCurriculums/PUT/{cod_emp}/{perfil}/{fecharecepcion}": {
+    "/api/ItemStocks/PUT/{codigo_item}/{codigo_inventario}/{cantidad}": {
       "put": {
         "tags": [
-          "EmpleadoCurriculums"
+          "ItemStocks"
         ],
         "parameters": [
           {
-            "name": "cod_emp",
+            "name": "codigo_item",
             "in": "path",
             "required": true,
             "schema": {
@@ -294,7 +793,7 @@
             }
           },
           {
-            "name": "perfil",
+            "name": "codigo_inventario",
             "in": "path",
             "required": true,
             "schema": {
@@ -302,12 +801,12 @@
             }
           },
           {
-            "name": "fecharecepcion",
+            "name": "cantidad",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "date-time"
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -318,14 +817,22 @@
         }
       }
     },
-    "/api/EmpleadoCurriculums/DEL/{Cod_Emp}": {
+    "/api/ItemStocks/DEL/{codigo_item}/{codigo_inventario}": {
       "delete": {
         "tags": [
-          "EmpleadoCurriculums"
+          "ItemStocks"
         ],
         "parameters": [
           {
-            "name": "Cod_Emp",
+            "name": "codigo_item",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigo_inventario",
             "in": "path",
             "required": true,
             "schema": {
@@ -340,14 +847,22 @@
         }
       }
     },
-    "/api/EmpleadoCurriculums/HAB/{Cod_Emp}": {
-      "put": {
+    "/api/ItemStocks/habilitar/{codigo_item}/{codigo_inventario}": {
+      "patch": {
         "tags": [
-          "EmpleadoCurriculums"
+          "ItemStocks"
         ],
         "parameters": [
           {
-            "name": "Cod_Emp",
+            "name": "codigo_item",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigo_inventario",
             "in": "path",
             "required": true,
             "schema": {
@@ -362,10 +877,10 @@
         }
       }
     },
-    "/api/Empleados/GET": {
+    "/api/Protocolos/GET": {
       "get": {
         "tags": [
-          "Empleados"
+          "Protocolos"
         ],
         "responses": {
           "200": {
@@ -374,10 +889,10 @@
         }
       }
     },
-    "/api/Empleados/GET/{codigo}": {
+    "/api/Protocolos/GET/{codigo}": {
       "get": {
         "tags": [
-          "Empleados"
+          "Protocolos"
         ],
         "parameters": [
           {
@@ -396,10 +911,10 @@
         }
       }
     },
-    "/api/Empleados/GET/Borrados": {
+    "/api/Protocolos/GET/Borrados": {
       "get": {
         "tags": [
-          "Empleados"
+          "Protocolos"
         ],
         "responses": {
           "200": {
@@ -408,12 +923,156 @@
         }
       }
     },
-    "/api/Empleados/POST/{ci}/{codigo}/{fechaingreso}": {
+    "/api/Protocolos/POST/{codigo}": {
       "post": {
         "tags": [
-          "Empleados"
+          "Protocolos"
         ],
         "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "titulo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Protocolos/PUT/{codigo}/{codigo_nuevo}": {
+      "put": {
+        "tags": [
+          "Protocolos"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "titulo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigo_nuevo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Protocolos/DEL/{codigo}": {
+      "delete": {
+        "tags": [
+          "Protocolos"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Protocolos/HAB/{codigo}": {
+      "put": {
+        "tags": [
+          "Protocolos"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RespuestaInformes": {
+      "get": {
+        "tags": [
+          "RespuestaInformes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/RespuestaInformes/GET/{codigo_solicitud}/{ci}/{codigo_informe}": {
+      "get": {
+        "tags": [
+          "RespuestaInformes"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_solicitud",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "ci",
             "in": "path",
@@ -423,54 +1082,7 @@
             }
           },
           {
-            "name": "codigo",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "fechaingreso",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Empleados/PUT/{codigo}/{codigoNuevo}/{ci}": {
-      "put": {
-        "tags": [
-          "Empleados"
-        ],
-        "parameters": [
-          {
-            "name": "codigo",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "codigoNuevo",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ci",
+            "name": "codigo_informe",
             "in": "path",
             "required": true,
             "schema": {
@@ -485,96 +1097,10 @@
         }
       }
     },
-    "/api/Empleados/DEL/{codigo}/{ci}": {
-      "delete": {
-        "tags": [
-          "Empleados"
-        ],
-        "parameters": [
-          {
-            "name": "codigo",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ci",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Empleados/HAB/{codigo}/{ci}": {
-      "put": {
-        "tags": [
-          "Empleados"
-        ],
-        "parameters": [
-          {
-            "name": "codigo",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ci",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Historial/GET/{codigo_emp}/{codigo_puesto}/{cod_dep}": {
+    "/api/RespuestaInformes/GET/Borrados": {
       "get": {
         "tags": [
-          "Historial"
-        ],
-        "parameters": [
-          {
-            "name": "codigo_emp",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "codigo_puesto",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "cod_dep",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
+          "RespuestaInformes"
         ],
         "responses": {
           "200": {
@@ -583,88 +1109,14 @@
         }
       }
     },
-    "/api/Historial/GET/{cod_dep}": {
-      "get": {
-        "tags": [
-          "Historial"
-        ],
-        "parameters": [
-          {
-            "name": "cod_dep",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Historial/GET/Borrados/{cod_dep}": {
-      "get": {
-        "tags": [
-          "Historial"
-        ],
-        "parameters": [
-          {
-            "name": "cod_dep",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Historial/GET/Borrados/{cod_dep}/{cod_emp}": {
-      "get": {
-        "tags": [
-          "Historial"
-        ],
-        "parameters": [
-          {
-            "name": "cod_emp",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "cod_dep",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Historial/POST/{cod_emp}/{codigo_puesto}/{cod_dep}/{fechaInicio}/{fechaFin}": {
+    "/api/RespuestaInformes/POST/{codigo_solicitud}/{ci}/{codigo_informe}": {
       "post": {
         "tags": [
-          "Historial"
+          "RespuestaInformes"
         ],
         "parameters": [
           {
-            "name": "cod_emp",
+            "name": "codigo_solicitud",
             "in": "path",
             "required": true,
             "schema": {
@@ -672,7 +1124,7 @@
             }
           },
           {
-            "name": "codigo_puesto",
+            "name": "ci",
             "in": "path",
             "required": true,
             "schema": {
@@ -680,29 +1132,11 @@
             }
           },
           {
-            "name": "cod_dep",
+            "name": "codigo_informe",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "fechaInicio",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "fechaFin",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
             }
           }
         ],
@@ -713,14 +1147,14 @@
         }
       }
     },
-    "/api/Historial/PUT/{cod_emp}/{codigo_puesto}/{cod_dep}/{nuevaFechaFin}": {
+    "/api/RespuestaInformes/PUT/{codigo_solicitud}/{ci}/{codigo_informe}": {
       "put": {
         "tags": [
-          "Historial"
+          "RespuestaInformes"
         ],
         "parameters": [
           {
-            "name": "cod_emp",
+            "name": "codigo_solicitud",
             "in": "path",
             "required": true,
             "schema": {
@@ -728,7 +1162,7 @@
             }
           },
           {
-            "name": "codigo_puesto",
+            "name": "ci",
             "in": "path",
             "required": true,
             "schema": {
@@ -736,20 +1170,11 @@
             }
           },
           {
-            "name": "cod_dep",
+            "name": "codigo_informe",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "nuevaFechaFin",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
             }
           }
         ],
@@ -760,14 +1185,14 @@
         }
       }
     },
-    "/api/Historial/DEL/{cod_emp}/{codigo_puesto}/{cod_dep}": {
+    "/api/RespuestaInformes/DEL/{codigo_solicitud}/{ci}/{codigo_informe}": {
       "delete": {
         "tags": [
-          "Historial"
+          "RespuestaInformes"
         ],
         "parameters": [
           {
-            "name": "cod_emp",
+            "name": "codigo_solicitud",
             "in": "path",
             "required": true,
             "schema": {
@@ -775,7 +1200,7 @@
             }
           },
           {
-            "name": "codigo_puesto",
+            "name": "ci",
             "in": "path",
             "required": true,
             "schema": {
@@ -783,7 +1208,7 @@
             }
           },
           {
-            "name": "cod_dep",
+            "name": "codigo_informe",
             "in": "path",
             "required": true,
             "schema": {
@@ -798,14 +1223,14 @@
         }
       }
     },
-    "/api/Historial/HAB/{cod_emp}/{codigo_puesto}/{cod_dep}": {
-      "put": {
+    "/api/RespuestaInformes/habilitar/{codigo_solicitud}/{ci}/{codigo_informe}": {
+      "patch": {
         "tags": [
-          "Historial"
+          "RespuestaInformes"
         ],
         "parameters": [
           {
-            "name": "cod_emp",
+            "name": "codigo_solicitud",
             "in": "path",
             "required": true,
             "schema": {
@@ -813,7 +1238,7 @@
             }
           },
           {
-            "name": "codigo_puesto",
+            "name": "ci",
             "in": "path",
             "required": true,
             "schema": {
@@ -821,7 +1246,7 @@
             }
           },
           {
-            "name": "cod_dep",
+            "name": "codigo_informe",
             "in": "path",
             "required": true,
             "schema": {
@@ -836,10 +1261,10 @@
         }
       }
     },
-    "/api/Nominas/GET": {
+    "/api/Respuestas/GET": {
       "get": {
         "tags": [
-          "Nominas"
+          "Respuestas"
         ],
         "responses": {
           "200": {
@@ -848,252 +1273,20 @@
         }
       }
     },
-    "/api/Nominas/GET/{Cod_Nom}": {
+    "/api/Respuestas/GET/{codigo_solicitud}/{ci}": {
       "get": {
         "tags": [
-          "Nominas"
+          "Respuestas"
         ],
         "parameters": [
           {
-            "name": "Cod_Nom",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Nominas/GET/Borrados": {
-      "get": {
-        "tags": [
-          "Nominas"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Nominas/POST/{cod_nom}/{cod_emp}/{periodoInicio}/{periodoFin}/{salario}/{bonos}/{descuentos}/{total}": {
-      "post": {
-        "tags": [
-          "Nominas"
-        ],
-        "parameters": [
-          {
-            "name": "cod_nom",
+            "name": "codigo_solicitud",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             }
           },
-          {
-            "name": "cod_emp",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "periodoInicio",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "periodoFin",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "salario",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "bonos",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "descuentos",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "total",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Nominas/PUT/{cod_nom}/{cod_emp}/{salario}/{bonos}/{descuentos}/{total}": {
-      "put": {
-        "tags": [
-          "Nominas"
-        ],
-        "parameters": [
-          {
-            "name": "cod_nom",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "cod_emp",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "salario",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "bonos",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "descuentos",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "total",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Nominas/DEL/{Cod_Nom}": {
-      "delete": {
-        "tags": [
-          "Nominas"
-        ],
-        "parameters": [
-          {
-            "name": "Cod_Nom",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Nominas/HAB/{Cod_Nom}": {
-      "put": {
-        "tags": [
-          "Nominas"
-        ],
-        "parameters": [
-          {
-            "name": "Cod_Nom",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Personas/GET": {
-      "get": {
-        "tags": [
-          "Personas"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Personas/GET/{ci}": {
-      "get": {
-        "tags": [
-          "Personas"
-        ],
-        "parameters": [
           {
             "name": "ci",
             "in": "path",
@@ -1110,10 +1303,10 @@
         }
       }
     },
-    "/api/Personas/GET/Borrados": {
+    "/api/Respuestas/GET/Borrados": {
       "get": {
         "tags": [
-          "Personas"
+          "Respuestas"
         ],
         "responses": {
           "200": {
@@ -1122,10 +1315,902 @@
         }
       }
     },
-    "/api/Personas/POST/{ci}/{nombre}/{apellidoPaterno}/{apellidoMaterno}/{sexo}/{fechanacimiento}": {
+    "/api/Respuestas/POST/{codigo_solicitud}/{ci}/{aprobado}": {
       "post": {
         "tags": [
-          "Personas"
+          "Respuestas"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_solicitud",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "aprobado",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Respuestas/PUT/{codigo_solicitud}/{ci}/{aprobado}": {
+      "put": {
+        "tags": [
+          "Respuestas"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_solicitud",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "aprobado",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Respuestas/DEL/{codigo_solicitud}/{ci}": {
+      "delete": {
+        "tags": [
+          "Respuestas"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_solicitud",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Respuestas/HAB/{codigo_solicitud}/{ci}": {
+      "put": {
+        "tags": [
+          "Respuestas"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_solicitud",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Solicitudes/GET": {
+      "get": {
+        "tags": [
+          "Solicitudes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Solicitudes/GET/{codigo}": {
+      "get": {
+        "tags": [
+          "Solicitudes"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Solicitudes/GET/Borrados": {
+      "get": {
+        "tags": [
+          "Solicitudes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Solicitudes/POST/{codigo}/{ci}/{descripcion}": {
+      "post": {
+        "tags": [
+          "Solicitudes"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Solicitudes/PUT/{codigo}/{ci}/{descripcion}": {
+      "put": {
+        "tags": [
+          "Solicitudes"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Solicitudes/DEL/{codigo}": {
+      "delete": {
+        "tags": [
+          "Solicitudes"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Solicitudes/HAB/{codigo}": {
+      "put": {
+        "tags": [
+          "Solicitudes"
+        ],
+        "parameters": [
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SolicitudProtocolos": {
+      "get": {
+        "tags": [
+          "SolicitudProtocolos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SolicitudProtocolos/{codigo_protocolo}/{codigo_solicitud}": {
+      "get": {
+        "tags": [
+          "SolicitudProtocolos"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_protocolo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigo_solicitud",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SolicitudProtocolos"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_protocolo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigo_solicitud",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SolicitudProtocolos/borrados": {
+      "get": {
+        "tags": [
+          "SolicitudProtocolos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SolicitudProtocolos/{codigo_protocolo}/{codigo_solicitud}/{fecha_inicio}/{fecha_fin}": {
+      "post": {
+        "tags": [
+          "SolicitudProtocolos"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_protocolo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigo_solicitud",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha_inicio",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha_fin",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SolicitudProtocolos"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_protocolo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigo_solicitud",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha_inicio",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha_fin",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SolicitudProtocolos/habilitar/{codigo_protocolo}/{codigo_solicitud}": {
+      "patch": {
+        "tags": [
+          "SolicitudProtocolos"
+        ],
+        "parameters": [
+          {
+            "name": "codigo_protocolo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigo_solicitud",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Telefonos/GET": {
+      "get": {
+        "tags": [
+          "Telefonos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Telefonos/GET/{telf}": {
+      "get": {
+        "tags": [
+          "Telefonos"
+        ],
+        "parameters": [
+          {
+            "name": "telf",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Telefonos/GET/Borrados": {
+      "get": {
+        "tags": [
+          "Telefonos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Telefonos/POST/{telf}": {
+      "post": {
+        "tags": [
+          "Telefonos"
+        ],
+        "parameters": [
+          {
+            "name": "telf",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Telefonos/PUT/{telf}/{telf_nuevo}": {
+      "put": {
+        "tags": [
+          "Telefonos"
+        ],
+        "parameters": [
+          {
+            "name": "telf",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "telf_nuevo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Telefonos/DEL/{telf}": {
+      "delete": {
+        "tags": [
+          "Telefonos"
+        ],
+        "parameters": [
+          {
+            "name": "telf",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Telefonos/HAB/{telf}": {
+      "put": {
+        "tags": [
+          "Telefonos"
+        ],
+        "parameters": [
+          {
+            "name": "telf",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsuarioCorreos": {
+      "get": {
+        "tags": [
+          "UsuarioCorreos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsuarioCorreos/{ci}/{correo}": {
+      "get": {
+        "tags": [
+          "UsuarioCorreos"
+        ],
+        "parameters": [
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "correo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "UsuarioCorreos"
+        ],
+        "parameters": [
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "correo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsuarioCorreos/borrados": {
+      "get": {
+        "tags": [
+          "UsuarioCorreos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsuarioCorreos/{ci}/{correo}/{fecha_inicio}": {
+      "post": {
+        "tags": [
+          "UsuarioCorreos"
+        ],
+        "parameters": [
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "correo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha_inicio",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha_fin",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "UsuarioCorreos"
+        ],
+        "parameters": [
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "correo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha_inicio",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha_fin",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsuarioCorreos/habilitar/{ci}/{correo}": {
+      "patch": {
+        "tags": [
+          "UsuarioCorreos"
+        ],
+        "parameters": [
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "correo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Usuarios/GET": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Usuarios/GET/{ci}": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Usuarios/GET/Borrados": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Usuarios/POST/{ci}/{nombre}/{apellido_p}/{apellido_m}": {
+      "post": {
+        "tags": [
+          "Usuarios"
         ],
         "parameters": [
           {
@@ -1145,7 +2230,7 @@
             }
           },
           {
-            "name": "apellidoPaterno",
+            "name": "apellido_p",
             "in": "path",
             "required": true,
             "schema": {
@@ -1153,28 +2238,11 @@
             }
           },
           {
-            "name": "apellidoMaterno",
+            "name": "apellido_m",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "sexo",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "fechanacimiento",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
             }
           }
         ],
@@ -1185,22 +2253,14 @@
         }
       }
     },
-    "/api/Personas/PUT/{ci}/{ciNuevo}/{nombre}/{apellidoPaterno}/{apellidoMaterno}": {
+    "/api/Usuarios/PUT/{ci}/{nombre}/{apellido_p}/{apellido_m}": {
       "put": {
         "tags": [
-          "Personas"
+          "Usuarios"
         ],
         "parameters": [
           {
             "name": "ci",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ciNuevo",
             "in": "path",
             "required": true,
             "schema": {
@@ -1216,7 +2276,7 @@
             }
           },
           {
-            "name": "apellidoPaterno",
+            "name": "apellido_p",
             "in": "path",
             "required": true,
             "schema": {
@@ -1224,7 +2284,7 @@
             }
           },
           {
-            "name": "apellidoMaterno",
+            "name": "apellido_m",
             "in": "path",
             "required": true,
             "schema": {
@@ -1239,10 +2299,10 @@
         }
       }
     },
-    "/api/Personas/DEL/{ci}": {
+    "/api/Usuarios/DEL/{ci}": {
       "delete": {
         "tags": [
-          "Personas"
+          "Usuarios"
         ],
         "parameters": [
           {
@@ -1261,10 +2321,10 @@
         }
       }
     },
-    "/api/Personas/HAB/{ci}": {
+    "/api/Usuarios/HAB/{ci}": {
       "put": {
         "tags": [
-          "Personas"
+          "Usuarios"
         ],
         "parameters": [
           {
@@ -1283,26 +2343,14 @@
         }
       }
     },
-    "/api/Puestos/GET": {
+    "/api/Usuarios/GET/{ci}/Telefonos": {
       "get": {
         "tags": [
-          "Puestos"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Puestos/GET/{codigo}": {
-      "get": {
-        "tags": [
-          "Puestos"
+          "Usuarios"
         ],
         "parameters": [
           {
-            "name": "codigo",
+            "name": "ci",
             "in": "path",
             "required": true,
             "schema": {
@@ -1317,10 +2365,20 @@
         }
       }
     },
-    "/api/Puestos/GET/Borrados": {
+    "/api/Usuarios/GET/{ci}/Correos": {
       "get": {
         "tags": [
-          "Puestos"
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -1329,14 +2387,106 @@
         }
       }
     },
-    "/api/Puestos/POST/{codigo}/{nombre}": {
-      "post": {
+    "/api/Usuarios/GET/{ci}/Contactos": {
+      "get": {
         "tags": [
-          "Puestos"
+          "Usuarios"
         ],
         "parameters": [
           {
-            "name": "codigo",
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Usuarios/GET/UsuariosConTelefonos": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Usuarios/GET/UsuariosSinTelefonos": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Usuarios/GET/UsuariosConTelefonos/{ci}": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "name": "ci",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Usuarios/GET/UsuariosSumaTelefonos": {
+      "get": {
+        "tags": [
+          "Usuarios"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsuarioTelefonos": {
+      "get": {
+        "tags": [
+          "UsuarioTelefonos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsuarioTelefonos/{ci}/{telf}": {
+      "get": {
+        "tags": [
+          "UsuarioTelefonos"
+        ],
+        "parameters": [
+          {
+            "name": "ci",
             "in": "path",
             "required": true,
             "schema": {
@@ -1344,7 +2494,7 @@
             }
           },
           {
-            "name": "nombre",
+            "name": "telf",
             "in": "path",
             "required": true,
             "schema": {
@@ -1357,102 +2507,14 @@
             "description": "Success"
           }
         }
-      }
-    },
-    "/api/Puestos/PUT/{codigo}/{nuevoNombre}": {
-      "put": {
-        "tags": [
-          "Puestos"
-        ],
-        "parameters": [
-          {
-            "name": "codigo",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "nuevoNombre",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Puestos/DEL/{codigo}": {
+      },
       "delete": {
         "tags": [
-          "Puestos"
+          "UsuarioTelefonos"
         ],
         "parameters": [
           {
-            "name": "codigo",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/Puestos/HAB/{codigo}": {
-      "put": {
-        "tags": [
-          "Puestos"
-        ],
-        "parameters": [
-          {
-            "name": "codigo",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/ReporteEmpleado/GET": {
-      "get": {
-        "tags": [
-          "ReporteEmpleado"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/ReporteEmpleado/GET/{codigo_emp}/{cod_dep}/{fecha}": {
-      "get": {
-        "tags": [
-          "ReporteEmpleado"
-        ],
-        "parameters": [
-          {
-            "name": "codigo_emp",
+            "name": "ci",
             "in": "path",
             "required": true,
             "schema": {
@@ -1460,21 +2522,12 @@
             }
           },
           {
-            "name": "cod_dep",
+            "name": "telf",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "fecha",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
           }
         ],
         "responses": {
@@ -1484,10 +2537,10 @@
         }
       }
     },
-    "/api/ReporteEmpleado/GET/Borrados": {
+    "/api/UsuarioTelefonos/borrados": {
       "get": {
         "tags": [
-          "ReporteEmpleado"
+          "UsuarioTelefonos"
         ],
         "responses": {
           "200": {
@@ -1496,14 +2549,14 @@
         }
       }
     },
-    "/api/ReporteEmpleado/POST/{cod_emp}/{cod_dep}/{fecha}/{tipo}/{desc}": {
+    "/api/UsuarioTelefonos/{ci}/{telf}/{fecha_inicio}": {
       "post": {
         "tags": [
-          "ReporteEmpleado"
+          "UsuarioTelefonos"
         ],
         "parameters": [
           {
-            "name": "cod_emp",
+            "name": "ci",
             "in": "path",
             "required": true,
             "schema": {
@@ -1511,7 +2564,7 @@
             }
           },
           {
-            "name": "cod_dep",
+            "name": "telf",
             "in": "path",
             "required": true,
             "schema": {
@@ -1519,16 +2572,7 @@
             }
           },
           {
-            "name": "fecha",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "tipo",
+            "name": "fecha_inicio",
             "in": "path",
             "required": true,
             "schema": {
@@ -1536,9 +2580,8 @@
             }
           },
           {
-            "name": "desc",
-            "in": "path",
-            "required": true,
+            "name": "fecha_fin",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -1549,16 +2592,14 @@
             "description": "Success"
           }
         }
-      }
-    },
-    "/api/ReporteEmpleado/PUT/{cod_emp}/{cod_dep}/{fecha}/{tipo}/{desc}": {
+      },
       "put": {
         "tags": [
-          "ReporteEmpleado"
+          "UsuarioTelefonos"
         ],
         "parameters": [
           {
-            "name": "cod_emp",
+            "name": "ci",
             "in": "path",
             "required": true,
             "schema": {
@@ -1566,7 +2607,7 @@
             }
           },
           {
-            "name": "cod_dep",
+            "name": "telf",
             "in": "path",
             "required": true,
             "schema": {
@@ -1574,16 +2615,7 @@
             }
           },
           {
-            "name": "fecha",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "tipo",
+            "name": "fecha_inicio",
             "in": "path",
             "required": true,
             "schema": {
@@ -1591,9 +2623,8 @@
             }
           },
           {
-            "name": "desc",
-            "in": "path",
-            "required": true,
+            "name": "fecha_fin",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -1606,14 +2637,14 @@
         }
       }
     },
-    "/api/ReporteEmpleado/DEL/{cod_emp}/{cod_dep}/{fecha}": {
-      "delete": {
+    "/api/UsuarioTelefonos/habilitar/{ci}/{telf}": {
+      "patch": {
         "tags": [
-          "ReporteEmpleado"
+          "UsuarioTelefonos"
         ],
         "parameters": [
           {
-            "name": "cod_emp",
+            "name": "ci",
             "in": "path",
             "required": true,
             "schema": {
@@ -1621,59 +2652,11 @@
             }
           },
           {
-            "name": "cod_dep",
+            "name": "telf",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "fecha",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/ReporteEmpleado/HAB/{cod_emp}/{cod_dep}/{fecha}": {
-      "put": {
-        "tags": [
-          "ReporteEmpleado"
-        ],
-        "parameters": [
-          {
-            "name": "cod_emp",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "cod_dep",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "fecha",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
             }
           }
         ],
@@ -1994,32 +2977,6 @@
             "nullable": true
           },
           "estado": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "PagoRequest": {
-        "type": "object",
-        "properties": {
-          "tipo": {
-            "type": "string",
-            "nullable": true
-          },
-          "concepto": {
-            "type": "string",
-            "nullable": true
-          },
-          "monto": {
-            "type": "number",
-            "format": "double"
-          },
-          "beneficiario": {
-            "type": "string",
-            "nullable": true
-          },
-          "cuentaBancariaDestino": {
             "type": "string",
             "nullable": true
           }
