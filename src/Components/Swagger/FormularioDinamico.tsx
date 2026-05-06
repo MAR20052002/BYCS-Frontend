@@ -34,18 +34,14 @@ interface SwaggerData {
 
 const FormularioDinamico = () => {
     const [swagger, setSwagger] = useState<SwaggerData | null>(null);
-
     const [tags, setTags] = useState<string[]>([]);
     const [tagSeleccionado, setTagSeleccionado] = useState<string>("");
-
     const [endpointsPorTag, setEndpointsPorTag] = useState<Record<string, string[]>>({});
     const [endpointSeleccionado, setEndpointSeleccionado] = useState<string>("");
-
     const [metodoReal, setMetodoReal] = useState<string>("");
     const [schemaActual, setSchemaActual] = useState<Schema | null>(null);
     const [parametrosPath, setParametrosPath] = useState<any[]>([]);
     const [respuesta, setRespuesta] = useState<any>(null);
-
     const [formValues, setFormValues] = useState<Record<string, any>>({});
 
     useEffect(() => {
@@ -55,7 +51,7 @@ const FormularioDinamico = () => {
                 setSwagger(data);
                 procesarTags(data);
             })
-            .catch((err) => console.error("Error cargando swagger:", err));
+            .catch(console.error);
     }, []);
 
     const procesarTags = (data: SwaggerData) => {
@@ -64,7 +60,6 @@ const FormularioDinamico = () => {
         Object.entries(data.paths).forEach(([path, methods]) => {
             const metodo = Object.keys(methods)[0];
             const info = methods[metodo];
-
             const tags = info.tags || ["SinTag"];
 
             tags.forEach((t: string) => {
@@ -81,13 +76,11 @@ const FormularioDinamico = () => {
         if (!swagger || !endpointSeleccionado) return;
 
         const endpoint = swagger.paths[endpointSeleccionado];
-        if (!endpoint) return;
-
         const metodo = Object.keys(endpoint)[0];
+
         setMetodoReal(metodo);
 
         const datosMetodo = endpoint[metodo];
-
         setParametrosPath(datosMetodo.parameters || []);
 
         const body = datosMetodo.requestBody?.content?.["application/json"]?.schema;
@@ -102,21 +95,13 @@ const FormularioDinamico = () => {
         setFormValues({});
     }, [swagger, endpointSeleccionado]);
 
-    // ✅ FIX tipos reales
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-    ) => {
-        const { name, value, type } = e.target;
+    const handleChange = (e: any) => {
+        const { name, value, type, checked } = e.target;
 
         let parsedValue: any = value;
 
-        if (type === "number") {
-            parsedValue = value === "" ? null : Number(value);
-        }
-
-        if (type === "checkbox") {
-            parsedValue = (e.target as HTMLInputElement).checked;
-        }
+        if (type === "number") parsedValue = value === "" ? null : Number(value);
+        if (type === "checkbox") parsedValue = checked;
 
         setFormValues((prev) => ({
             ...prev,
@@ -128,59 +113,54 @@ const FormularioDinamico = () => {
         let type = "text";
 
         if (property.type === "integer" || property.type === "number") type = "number";
-        if (property.format === "date-time") type = "datetime-local";
-        if (property.format === "date") type = "date";
         if (property.format === "email") type = "email";
 
-        // ✅ ENUM
+        // ⚠️ FECHAS → TEXTO
+        if (property.format === "date" || property.format === "date-time") {
+            type = "text";
+        }
+
         if (property.enum) {
             return (
-                <div key={key} className="mb-2">
-                    <label className="form-label">{key}</label>
+                <div key={key} className="mb-3">
+                    <label className="form-label fw-semibold">{key}</label>
                     <select
-                        className="form-select"
+                        className="form-select shadow-sm"
                         name={key}
                         value={formValues[key] || ""}
                         onChange={handleChange}
                     >
-                        <option value="">-- Selecciona --</option>
+                        <option value="">Selecciona...</option>
                         {property.enum.map((opt) => (
-                            <option key={opt} value={opt}>
-                                {opt}
-                            </option>
+                            <option key={opt} value={opt}>{opt}</option>
                         ))}
                     </select>
                 </div>
             );
         }
 
-        // ✅ BOOLEAN
         if (property.type === "boolean") {
             return (
-                <div key={key} className="mb-2 form-check">
+                <div key={key} className="form-check mb-3">
                     <input
                         type="checkbox"
                         className="form-check-input"
-                        id={key}
                         name={key}
                         onChange={handleChange}
                     />
-                    <label className="form-check-label" htmlFor={key}>
-                        {key}
-                    </label>
+                    <label className="form-check-label">{key}</label>
                 </div>
             );
         }
 
-        // ✅ ARRAY (simple)
         if (property.type === "array") {
             return (
-                <div key={key} className="mb-2">
-                    <label>{key} (separado por comas)</label>
+                <div key={key} className="mb-3">
+                    <label className="form-label fw-semibold">{key}</label>
                     <input
                         type="text"
-                        className="form-control"
-                        name={key}
+                        className="form-control shadow-sm"
+                        placeholder="valor1, valor2..."
                         onChange={(e) =>
                             setFormValues((prev) => ({
                                 ...prev,
@@ -192,39 +172,18 @@ const FormularioDinamico = () => {
             );
         }
 
-        // ⚠️ OBJECT (fallback)
-        if (property.type === "object") {
-            return (
-                <div key={key} className="border p-2 mb-2">
-                    <strong>{key}</strong>
-                    <div className="text-muted">Objeto no soportado aún</div>
-                </div>
-            );
-        }
-
         return (
-            <div key={key} className="mb-2">
-                <label className="form-label">{key}</label>
+            <div key={key} className="mb-3">
+                <label className="form-label fw-semibold">{key}</label>
                 <input
                     type={type}
-                    className="form-control"
+                    className="form-control shadow-sm"
                     name={key}
                     value={formValues[key] || ""}
                     onChange={handleChange}
                 />
             </div>
         );
-    };
-
-    const renderBodyFields = () => {
-        if (!schemaActual) return null;
-        return Object.keys(schemaActual.properties).map((key) =>
-            renderCampo(key, schemaActual.properties[key])
-        );
-    };
-
-    const renderPathFields = () => {
-        return parametrosPath.map((p) => renderCampo(p.name, p.schema));
     };
 
     const ejecutar = async () => {
@@ -236,17 +195,15 @@ const FormularioDinamico = () => {
             });
 
             const method = metodoReal.toUpperCase();
-
             let options: RequestInit = { method };
 
             if (method === "POST" || method === "PUT") {
                 const body: any = {};
 
-                if (schemaActual) {
+                schemaActual &&
                     Object.keys(schemaActual.properties).forEach((key) => {
                         body[key] = formValues[key];
                     });
-                }
 
                 options.headers = { "Content-Type": "application/json" };
                 options.body = JSON.stringify(body);
@@ -254,102 +211,104 @@ const FormularioDinamico = () => {
 
             const res = await fetch(url, options);
             const text = await res.text();
-
             setRespuesta(text);
-        } catch (err) {
-            console.error("❌ Error:", err);
+        } catch {
             setRespuesta("Error en la petición");
         }
     };
 
-    if (!swagger) return <div>Cargando Swagger…</div>;
+    if (!swagger) return <div className="text-center mt-5">Cargando Swagger...</div>;
 
     return (
-        <div className="container mt-3">
-            <h1>Formulario Dinámico</h1>
+        <div className="container py-4" style={{ maxWidth: "900px" }}>
+            <div className="card shadow-lg border-0">
+                <div className="card-body">
+                    <h2 className="mb-4 text-center fw-bold">🚀 API Tester Dinámico</h2>
 
-            <div className="mb-3">
-                <label className="form-label fw-bold">Selecciona un grupo (tag)</label>
-                <select
-                    className="form-select"
-                    value={tagSeleccionado}
-                    onChange={(e) => {
-                        setTagSeleccionado(e.target.value);
-                        setEndpointSeleccionado("");
-                    }}
-                >
-                    <option value="">-- Selecciona un tag --</option>
-                    {tags.map((t) => (
-                        <option key={t} value={t}>
-                            {t}
-                        </option>
-                    ))}
-                </select>
+                    {/* TAG */}
+                    <div className="mb-4">
+                        <label className="form-label fw-bold">Grupo</label>
+                        <select
+                            className="form-select shadow-sm"
+                            value={tagSeleccionado}
+                            onChange={(e) => {
+                                setTagSeleccionado(e.target.value);
+                                setEndpointSeleccionado("");
+                            }}
+                        >
+                            <option value="">Selecciona un grupo...</option>
+                            {tags.map((t) => (
+                                <option key={t}>{t}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* ENDPOINT */}
+                    {tagSeleccionado && (
+                        <div className="mb-4">
+                            <label className="form-label fw-bold">Endpoint</label>
+                            <select
+                                className="form-select shadow-sm"
+                                value={endpointSeleccionado}
+                                onChange={(e) => setEndpointSeleccionado(e.target.value)}
+                            >
+                                <option value="">Selecciona...</option>
+                                {endpointsPorTag[tagSeleccionado].map((ep) => (
+                                    <option key={ep}>{ep}</option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
+
+                    {/* MÉTODO */}
+                    {endpointSeleccionado && (
+                        <div className="badge bg-dark mb-3">
+                            {metodoReal.toUpperCase()}
+                        </div>
+                    )}
+
+                    {/* FORM */}
+                    {(parametrosPath.length > 0 || schemaActual) && (
+                        <div className="p-3 bg-light rounded mb-3">
+                            {parametrosPath.map((p) => renderCampo(p.name, p.schema))}
+                            {schemaActual &&
+                                Object.keys(schemaActual.properties).map((key) =>
+                                    renderCampo(key, schemaActual.properties[key])
+                                )}
+                        </div>
+                    )}
+
+                    {/* BOTÓN */}
+                    {endpointSeleccionado && (
+                        <div className="d-grid">
+                            <button
+                                onClick={ejecutar}
+                                className="btn btn-primary btn-lg shadow-sm"
+                            >
+                                Ejecutar {metodoReal.toUpperCase()}
+                            </button>
+                        </div>
+                    )}
+
+                    {/* RESPUESTA */}
+                    {respuesta && (
+                        <div className="mt-4">
+                            <h5 className="fw-bold">Respuesta</h5>
+                            <pre
+                                style={{
+                                    background: "#0d1117",
+                                    color: "#c9d1d9",
+                                    padding: "1rem",
+                                    borderRadius: "10px",
+                                    overflowX: "auto",
+                                }}
+                            >
+                                {formatearRespuesta(respuesta)}
+                            </pre>
+                        </div>
+                    )}
+                </div>
             </div>
-
-            {tagSeleccionado && (
-                <div className="mb-3">
-                    <label className="form-label fw-bold">Selecciona un endpoint</label>
-                    <select
-                        className="form-select"
-                        value={endpointSeleccionado}
-                        onChange={(e) => setEndpointSeleccionado(e.target.value)}
-                    >
-                        <option value="">-- Selecciona un endpoint --</option>
-                        {endpointsPorTag[tagSeleccionado].map((ep) => (
-                            <option key={ep} value={ep}>
-                                {ep}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            )}
-
-            {endpointSeleccionado && (
-                <div className="alert alert-secondary">
-                    <strong>Método:</strong> {metodoReal.toUpperCase()}
-                </div>
-            )}
-
-            {(parametrosPath.length > 0 || schemaActual) && (
-                <div className="border p-3 mb-3">
-                    {parametrosPath.length > 0 && (
-                        <>
-                            <h5>Parámetros del PATH</h5>
-                            {renderPathFields()}
-                        </>
-                    )}
-
-                    {schemaActual && (
-                        <>
-                            <h5 className="mt-3">Body JSON</h5>
-                            {renderBodyFields()}
-                        </>
-                    )}
-                </div>
-            )}
-
-            {endpointSeleccionado && (
-                <button onClick={ejecutar} className="btn btn-primary mb-3">
-                    Ejecutar {metodoReal.toUpperCase()}
-                </button>
-            )}
-
-            {respuesta && (
-                <div className="alert alert-info mt-4">
-                    <h5>Respuesta del servidor:</h5>
-                    <pre style={{
-                        background: "#1e1e1e",
-                        color: "#dcdcdc",
-                        padding: "1rem",
-                        borderRadius: "8px",
-                        overflowX: "auto",
-                        whiteSpace: "pre-wrap"
-                    }}>
-                        {formatearRespuesta(respuesta)}
-                    </pre>
-                </div>
-            )}
         </div>
     );
 };
