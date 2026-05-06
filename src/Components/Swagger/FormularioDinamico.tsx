@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const BASE_URL = "https://bycs-production.up.railway.app";
 
