@@ -266,7 +266,7 @@ const FormularioDinamico = () => {
 
     return (
         <div className="container mt-3">
-            <h1>Formulario Dinámico según Swagger</h1>
+            <h1>Formulario Dinámico</h1>
 
             <div className="mb-3">
                 <label className="form-label fw-bold">Selecciona un grupo (tag)</label>
